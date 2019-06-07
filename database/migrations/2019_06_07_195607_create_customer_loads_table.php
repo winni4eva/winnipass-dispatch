@@ -15,6 +15,14 @@ class CreateCustomerLoadsTable extends Migration
     {
         Schema::create('customer_loads', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id', 'customer_loads_customer_id_fk')
+                ->references('id')
+                ->on('customers')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->string('load');
+            $table->decimal('weight');
             $table->timestamps();
         });
     }

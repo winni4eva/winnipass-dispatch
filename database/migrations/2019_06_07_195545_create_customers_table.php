@@ -15,6 +15,14 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('dispatcher_id');
+            $table->foreign('dispatcher_id', 'customer_dispatcher_id_fk')
+                ->references('id')
+                ->on('dispatchers')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->timestamps();
         });
     }

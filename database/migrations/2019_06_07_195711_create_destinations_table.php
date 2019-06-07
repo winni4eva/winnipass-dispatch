@@ -15,6 +15,14 @@ class CreateDestinationsTable extends Migration
     {
         Schema::create('destinations', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('dispatcher_id');
+            $table->foreign('dispatcher_id', 'destinations_dispatcher_id_fk')
+                ->references('id')
+                ->on('dispatchers')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->string('destination');
+            $table->unique(['dispatcher_id', 'destination']);
             $table->timestamps();
         });
     }

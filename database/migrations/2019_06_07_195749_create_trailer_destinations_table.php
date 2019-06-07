@@ -15,6 +15,12 @@ class CreateTrailerDestinationsTable extends Migration
     {
         Schema::create('trailer_destinations', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('trailer_driver_load_id');
+            $table->foreign('trailer_driver_load_id', 'trailer_destinations_trailer_driver_load_id_fk')
+                ->references('id')
+                ->on('trailer_driver_loads')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

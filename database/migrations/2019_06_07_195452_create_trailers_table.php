@@ -15,6 +15,14 @@ class CreateTrailersTable extends Migration
     {
         Schema::create('trailers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('dispatcher_id');
+            $table->foreign('dispatcher_id', 'trailer_dispatcher_id_fk')
+                ->references('id')
+                ->on('dispatchers')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->string('trailer');
+            $table->decimal('capacity');
             $table->timestamps();
         });
     }

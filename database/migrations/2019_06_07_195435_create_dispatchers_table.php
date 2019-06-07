@@ -15,6 +15,7 @@ class CreateDispatchersTable extends Migration
     {
         Schema::create('dispatchers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('dispatcher');
             $table->timestamps();
         });
     }
