@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Dispatcher::class, function (Faker $faker) {
     return [
-        //
+        'dispatcher' => $faker->company
     ];
 });

@@ -21,6 +21,12 @@ class CreateTrailerDestinationsTable extends Migration
                 ->on('trailer_driver_loads')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->unsignedBigInteger('destination_id');
+            $table->foreign('destination_id', 'trailer_destinations_destination_id_fk')
+                ->references('id')
+                ->on('destinations')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }
