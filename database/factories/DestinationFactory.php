@@ -11,6 +11,6 @@ $factory->define(Destination::class, function (Faker $faker) {
         'dispatcher_id' => function () {
             return Dispatcher::first()->id ?? factory(Dispatcher::class)->create()->id;
         },
-        'destination' => $faker->state,
+        'destination' => $faker->unique()->state,
     ];
 });
