@@ -11,5 +11,5 @@
 |
 */
 
-Route::get('/' 'HomeController@index')
+Route::get('/', 'HomeController@index');
 Route::resource('dispatchers', 'DispatcherController');

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Dispatcher;
+use App\Trailer;
+use App\Driver;
+use App\Customer;
 
 class HomeController extends Controller
 {
@@ -14,7 +17,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $dispatchers = Dispatcher::pluck('dispatcher', 'id');
+        $trailers = Trailer::pluck('trailer', 'id');
+        $drivers = Driver::pluck('first_name', 'id');
+        $customers = Customer::pluck('first_name', 'id');
+
+        return view('index')->with(compact('dispatchers', 'trailers', 'drivers', 'customers'));
     }
 
     /**
